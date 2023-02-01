@@ -3,7 +3,7 @@
 
 ### Thomas Coffey
 
-    ![alt_text](IMG_EF915285A61C-1 Medium.png)
+    ![alt_text](./IMG_EF915285A61C-1 Medium.png)
 
       
 	Prior to attending SUNY New Paltz I had absolutely no computer experience. I worked as a restaurant manager, and my boss who owned the restaurant previously worked as a programmer so I thought it would be a good career path to try to get into. I love the challenge for learning new things and quickly fell in love with Computer Science. The classes I have taken so far include CS1, CS2, CS3, Object Oriented Programming, and Assembly Language and Computer Architecture. I received A’s in all these courses. In addition, I have made it a point to continue learning the field outside of the curriculum. In my spare time I have learned how to use Python, as well as learning and applying algorithms to solve problems that I could potentially get during future technical interviews. I completed a few small projects, games like “snake” and “connect 4” which I wrote in Python.  I am currently in the process of applying for summer internships. 
