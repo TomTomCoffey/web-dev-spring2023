@@ -350,20 +350,18 @@
       $(".panel-block").slideDown();
       const tab = $(this).text().trim()
 
-      switch(tab){
-        case "All":
-          $(".panel-block").slideDown();
-          break;
-        case "Active":
-          $(".panel-block").not(":checked").slideUp();
-          break;
-        case "Completed":
-          $(".panel-block").not(":checked").slideUp();
-          break;
-        case "Current":
-            $(".panel-block").not(":checked").slideUp();
-            break;
-            
+      switch (tab) {
+                    case "Completed":
+                        // panel block that has a checked checkbox
+                        $(".panel-block:has(:checkbox)").not(":has(:checked)").slideUp();
+                        break;
+                    case "Current":
+                        // panel block that has a checked checkbox
+                        $(".panel-block").has(":checked").slideUp();
+                        break;
+                    default:
+                        break;
+
 
       }
     })
