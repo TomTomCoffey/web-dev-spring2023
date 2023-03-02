@@ -12,7 +12,7 @@ import NavBar from '@/components/NavBar.vue'
     <RouterView />
   </div>
   
-  <RouterView />
+ 
 </template>
 
 <style scoped>
