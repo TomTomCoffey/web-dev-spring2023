@@ -1,21 +1,24 @@
-<script setup lang= "ts">
-import { RouterLink, RouterView } from 'vue-router';
-
-const isMenuActive = false;
-
+<script setup lang="ts">
+import { ref } from 'vue';
+import { RouterLink } from 'vue-router';
+import LoginBadge from '@/components/LoginBadge.vue';
+    const isMenuActive = ref(false);
+    function toggleMenu() {
+        isMenuActive.value = !isMenuActive.value;
+        console.log({ isMenuActive });
+    }
 </script>
 
 <template>
-
-<nav class="navbar is-primary">
-    <div class="container">
+    <nav class="navbar is-primary">
+        <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
             
             <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="22" height="22" />
             
           </a>
-          <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="isMenuActive = !isMenuActive" >
+          <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="toggleMenu" >
             <span></span>
             <span></span>
             <span></span>
@@ -24,12 +27,10 @@ const isMenuActive = false;
       
         <div class="navbar-menu" :class="{ 'is-active': isMenuActive }">
           <div class="navbar-start">
-            <a class="navbar-item" href="https://bulma.io/">
-              Home
-            </a>
 
             <RouterLink to="/" class="navbar-item">Home</RouterLink>
             <RouterLink to="/about" class="navbar-item">About</RouterLink>
+            <RouterLink to="/products" class="navbar-item">Products</RouterLink>
 
 
             <div class="navbar-item has-dropdown is-hoverable">
@@ -64,6 +65,9 @@ const isMenuActive = false;
           </div>
       
           <div class="navbar-end">
+
+            <LoginBadge />
+
             <div class="navbar-item">
               <div class="field is-grouped">
                 <p class="control">
@@ -88,10 +92,9 @@ const isMenuActive = false;
             </div>
           </div>
         </div>
-        </div>
+    </div>
       </nav>
- 
-
 </template>
+ 
 
 <style scoped></style>
