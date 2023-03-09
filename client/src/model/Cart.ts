@@ -1,15 +1,32 @@
 
- import { ref } from  'vue'
-import type { Product } from './products';
-const cart = ref([] as CartItem[])
+import { computed, ref } from "vue";
+import type { Product } from "./products";
 
-export function useCart()
-{
-    return  cart;
+const cart = ref([] as CartItem[]);
+
+export function useCart() {
+    return cart;
 }
 
 export interface CartItem {
     productId: number;
     product: Product;
-    quanity: number;
+    quantity: number;
 }
+
+export function addToCart(product: Product) {
+    const item = cart.value.find((item) => item.productId == product.id);
+    if (item) {
+        item.quantity++;
+    } else {
+        cart.value.push({
+            productId: product.id,
+            product,
+            quantity: 1,
+        });
+    }
+const cartTotal = (computed(()=>cart.value.reduce((total, item) => total + item.product.price * item.quantity, 0)));
+
+}
+
+

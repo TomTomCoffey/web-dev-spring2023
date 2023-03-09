@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {getProducts,  type Product } from '../model/products'
 import { ref } from 'vue'
+import { addToCart } from '../model/Cart'
+
 
 const products = ref( getProducts());
 
@@ -27,7 +29,7 @@ const products = ref( getProducts());
                     <p class="product-description">{{product.description}}</p>
                     <p class="product-price">${{product.price}}</p>
                 </div>
-                <div class="button is primary"> Buy</div>
+                <div class="button is primary" @click="addToCart(product)"> Buy</div>
             </div>
 
         </div>
