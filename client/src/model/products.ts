@@ -1,9 +1,6 @@
 
 import data from "../data/products.json";
 
-
-    
-
 export interface Product {
     id: number;
     title: string;
@@ -16,9 +13,6 @@ export interface Product {
     category: string;
     thumbnail: string;
     images: string[];
-
-
-
 }
 
 export function getProducts(): Product[] {

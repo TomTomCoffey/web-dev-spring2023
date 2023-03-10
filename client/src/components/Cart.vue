@@ -1,9 +1,7 @@
 <script setup lang="ts">
-    import { useCart } from '@/model/Cart';
-
+    import { useCart, total, removeFromCart } from '@/model/Cart';
     const cart = useCart();
-   
-
+    
 </script>
 
 <template>
@@ -11,21 +9,28 @@
         <h1 class="title">
             Cart
             <small>
-                $613
+                ${{ total }}
                 ({{ cart.length }} items)
             </small>
         </h1>
         <p></p>
-        <div class="cart-item" v-for="item in cart">
+        <div class="cart-item" v-for="item, i in cart">
             <img :src="item.product.thumbnail" alt="product image" />
             <div>
                 <b>{{ item.product.title }}</b>
                 <p>
                     ${{ item.product.price }}
-                    x {{ item.quantity }}
+                    x 
+                    <select v-model="item.quantity" class="quantity-dropdown">
+                        <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+                    </select>
                 </p>            
             </div>
-
+            <button class="button is-danger" @click="removeFromCart(i)">
+                <span class="icon">
+                    <i class="fas fa-trash"></i>
+                </span>
+            </button>
         </div>
     </div>
 </template>

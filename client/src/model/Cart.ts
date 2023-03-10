@@ -15,7 +15,7 @@ export interface CartItem {
 }
 
 export function addToCart(product: Product) {
-    const item = cart.value.find((item) => item.productId == product.id);
+    const item = cart.value.find((p) => p.productId == product.id);
     if (item) {
         item.quantity++;
     } else {
@@ -25,8 +25,11 @@ export function addToCart(product: Product) {
             quantity: 1,
         });
     }
-const cartTotal = (computed(()=>cart.value.reduce((total, item) => total + item.product.price * item.quantity, 0)));
-
 }
 
+export function removeFromCart(index: number) {
+        cart.value.splice(index, 1);
+}
 
+export const quantity = computed(() => cart.value.reduce((total, item) => total + item.quantity, 0));
+export const total = computed(()=> cart.value.reduce((total, item) => total + item.product.price * item.quantity, 0))

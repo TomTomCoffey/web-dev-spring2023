@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-import LoginBadge from '@/components/LoginBadge.vue';
+import { quantity } from '../model/Cart';
+import Cart from './Cart.vue';
+import Flyout from './Flyout.vue';
+import LoginBadge from './LoginBadge.vue';
     const isMenuActive = ref(false);
-    
+    const isCartActive = ref(false);
     function toggleMenu() {
         isMenuActive.value = !isMenuActive.value;
         console.log({ isMenuActive });
     }
-    
 </script>
 
 <template>
@@ -31,6 +33,11 @@ import LoginBadge from '@/components/LoginBadge.vue';
           <div class="navbar-start">
 
             <RouterLink to="/" class="navbar-item">Home</RouterLink>
+            <div class="span">
+              <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+            </div>
             <RouterLink to="/about" class="navbar-item">About</RouterLink>
             <RouterLink to="/products" class="navbar-item">Products</RouterLink>
 
@@ -68,6 +75,14 @@ import LoginBadge from '@/components/LoginBadge.vue';
       
           <div class="navbar-end">
 
+            <div class="navbar-item">
+                <button class="button  is-primary" :class="{ 'is-active': isCartActive }" @click="isCartActive = !isCartActive">
+                    <span class="icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="tag is-danger quantity-tag">{{ quantity }}</span>
+                    </span>
+                </button>
+            </div>
             <LoginBadge />
 
             <div class="navbar-item">
@@ -96,7 +111,24 @@ import LoginBadge from '@/components/LoginBadge.vue';
         </div>
     </div>
       </nav>
+    <Flyout :class="{ 'is-active': isCartActive }">
+        <Cart />
+    </Flyout>
 </template>
- 
 
-<style scoped></style>
+
+<style scoped>
+    .quantity-tag {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        border-radius: 1rem;
+    }
+
+    .span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: -1rem;
+    }
+</style>

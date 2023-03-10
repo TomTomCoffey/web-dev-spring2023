@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="flyout active">
+    <div class="flyout">
         <slot />
     </div>
 </template>
@@ -20,7 +20,7 @@
         transition: right 0.5s ease-in-out;
         overflow-y: scroll;
     }
-    .flyout.active {
+    .flyout.is-active {
         right: 0;
     }
     .flyout:hover {
