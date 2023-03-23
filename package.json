@@ -10,8 +10,11 @@
     "url": "git+https://github.com/TomTomCoffey/web-dev-spring2023.git"
   },
   "private": true,
+  "workspaces":[
+    "client"],
 
   "scripts": {
+    "build": "npm i -ws && npm run build -ws",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js --watch server"
 
