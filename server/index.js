@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const products = require('./controllers/products')
 const app = express()
+const jokes = require('./controllers/jokes')
 
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
@@ -17,7 +18,9 @@ app
     .get('/api/v1/', (req, res) => {
         res.send('Hello World! From Express')
     })
+    .use('/api/v1/jokes', jokes)
     .use('/api/v1/products', products)
+    .use('/api/v1/jokes', jokes)
 
 // Catch all
 app.get('*', (req, res) => {
