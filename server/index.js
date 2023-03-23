@@ -1,35 +1,31 @@
 const express = require('express')
-const app = express() // Import the http module
+const path = require('path')
+const products = require('./controllers/products')
+const app = express()
 
 const hostname = '127.0.0.1';
-const port = process.env.PORT || 3000; // Port number 3000 is used for development
+const port = process.env.PORT || 3000;
 
+// Middleware
 app
-   .get('/', (req, res) => {
-  res.send('Hello World! From express!!')
-})
-  .get('/products', (req, res) => {
-    res.send({
-      items[
-        {
-          id: 1,
-          name: 'product 1'
-      }]
-    
-  })
+    .use(express.json())
+    .use(express.static(path.join(__dirname, '../client/dist')))
 
 
+// Actions
+app
+    .get('/api/v1/', (req, res) => {
+        res.send('Hello World! From Express')
+    })
+    .use('/api/v1/products', products)
 
-
-
-
-
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+// Catch all
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'))
 })
 
 
 
-
-
+app.listen(port, () => 
+  console.log(`Server running at http://${hostname}:${port}/`)
+);
