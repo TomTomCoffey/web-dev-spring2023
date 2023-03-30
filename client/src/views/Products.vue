@@ -4,11 +4,10 @@ import { ref } from 'vue'
 import { addToCart } from '../model/Cart'
 
 
-const products = ref([] as Product[]);
-/// or ref<Product[]>([]);
-getProducts().then((data) => {
-    products.value = data;
-});
+const products = ref<Product[]>([]);
+ getProducts().then((data) => {
+     products.value = data;
+ });
 
 </script>
 
