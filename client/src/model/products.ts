@@ -1,5 +1,7 @@
+/*  B"H
+*/
 
-import data from "../data/products.json";
+import { api } from "./session";
 
 export interface Product {
     id: number;
@@ -15,6 +17,9 @@ export interface Product {
     images: string[];
 }
 
-export function getProducts(): Product[] {
-    return data.products;
+export function getProducts(): Promise<Product[]> {
+
+    return api('products')
+
 }
+

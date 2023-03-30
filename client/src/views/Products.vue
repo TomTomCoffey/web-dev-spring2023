@@ -4,7 +4,11 @@ import { ref } from 'vue'
 import { addToCart } from '../model/Cart'
 
 
-const products = ref( getProducts());
+const products = ref([] as Product[]);
+/// or ref<Product[]>([]);
+getProducts().then((data) => {
+    products.value = data;
+});
 
 </script>
 
@@ -20,6 +24,8 @@ const products = ref( getProducts());
         </h2>
 
         <div class="product-list">
+            <progress v-if="!products.length" class="progress is-small is-primary" max="100">15%</progress>
+            
             <div class="product" v-for="product in products" :key="product.id">
                 <div class="product-image">
                     <img :src="product.thumbnail" alt="product.title">
