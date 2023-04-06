@@ -1,3 +1,5 @@
+/*  B"H
+*/
 
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
@@ -8,7 +10,7 @@ const session = reactive({
     isLoading: false,
     messages: [] as {
         msg: string,
-        type: "success" | "error" | "warning" | "info" | "danger",
+        type: "success" | "danger" | "warning" | "info",
     }[],
 })
 
@@ -21,31 +23,17 @@ interface User {
 }
 
 export function useSession() {
-
-    session.messages.push({
-        msg: "Welcome to the store!",
-        type: "info",
-    })
-    session.messages.push({
-        msg: "Youre not logged in yet",
-        type: "warning",
-    })
-    session.messages.push({
-        msg: "Youre not logged in",
-        type: "danger",
-    })
-
-    return session
+    return session;
 }
 
 export function api(url: string) {
     session.isLoading = true;
     return myFetch.api(url)
         .catch(err => {
-            console.error((err));
+            console.error({err});
             session.messages.push({
-                msg: err.message ?? JSON.stringify(err),
-                type: "error",
+                msg: err.message  ?? JSON.stringify(err),
+                type: "danger",
             })
         })
         .finally(() => {
@@ -70,13 +58,14 @@ export function useLogout() {
     }
 }
 
-export function addMessage(msg: string, type: "success" | "error" | "warning" | "info" | "danger") {
-    console.log({msg, type})
+export function addMessage(msg: string, type: "success" | "danger" | "warning" | "info") {
+    console.log({msg, type});
     session.messages.push({
         msg,
         type,
     })
 }
+
 export function deleteMessage(index: number) {
     session.messages.splice(index, 1);
 }

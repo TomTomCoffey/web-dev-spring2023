@@ -5,9 +5,11 @@ import { quantity } from '../model/Cart';
 import Cart from './Cart.vue';
 import Flyout from './Flyout.vue';
 import LoginBadge from './LoginBadge.vue';
-import Notifacation from './Notifacation.vue';
+import Notifications from './Notifications.vue';
+
     const isMenuActive = ref(false);
     const isCartActive = ref(false);
+
     function toggleMenu() {
         isMenuActive.value = !isMenuActive.value;
         console.log({ isMenuActive });
@@ -34,11 +36,6 @@ import Notifacation from './Notifacation.vue';
           <div class="navbar-start">
 
             <RouterLink to="/" class="navbar-item">Home</RouterLink>
-            <div class="span">
-              <div class="icon">
-                <i class="fas fa-shopping-cart"></i>
-              </div>
-            </div>
             <RouterLink to="/about" class="navbar-item">About</RouterLink>
             <RouterLink to="/products" class="navbar-item">Products</RouterLink>
 
@@ -77,7 +74,7 @@ import Notifacation from './Notifacation.vue';
           <div class="navbar-end">
 
             <div class="navbar-item">
-              <Notifacation/>
+                <Notifications />
                 <button class="button  is-primary" :class="{ 'is-active': isCartActive }" @click="isCartActive = !isCartActive">
                     <span class="icon">
                         <i class="fas fa-shopping-cart"></i>
@@ -125,12 +122,5 @@ import Notifacation from './Notifacation.vue';
         top: -5px;
         right: -5px;
         border-radius: 1rem;
-    }
-
-    .span{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: -1rem;
     }
 </style>
