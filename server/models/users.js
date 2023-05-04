@@ -1,7 +1,7 @@
-const data = require('../data/products.json');
+//const data = require('../data/products.json');
 const{connect, ObjectId }= require('./mongo');
 
-const COLLECTION_NAME = 'products';
+const COLLECTION_NAME = 'users';
 
 async function collection(){
     const db = await connect();
